@@ -1,0 +1,45 @@
+.input-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.register__input-container:not(:first-child) {
+  margin-top: 6px;
+}
+
+.input-block__label {
+  color: #8b8b8b;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.21;
+}
+
+.input-block__input {
+  margin-top: 5px;
+  padding: 0 0 10px 0;
+
+  width: 100%;
+
+  background-color: unset;
+  border: unset;
+
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+
+  border-bottom: 1px solid #424242;
+}
+
+.input-block__input_invalid {
+  color: #ee3465;
+}
+
+.input-block__label_error {
+  margin-top: 6px;
+
+  color: #ee3465;
+}
