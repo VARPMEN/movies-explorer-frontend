@@ -4,7 +4,7 @@ import "./SavedMovies.css";
 
 function SavedMovies() {
   return (
-    <section className="saved-movies">
+    <section className="saved-movies" aria-label="Сохранненые фильмы">
       <SearchForm />
       <MoviesCardList />
     </section>

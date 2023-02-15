@@ -24,9 +24,8 @@ function MoviesCard() {
           <p className="movies-card__film-duration">1ч 42м</p>
         </div>
         {isMoviesLocation ? (
-          <button className="movies-card__button">
+          <button className="movies-card__button" type="button">
             <img
-              type="button"
               src={isLiked ? likeLogo : unlikeLogo}
               alt="Понравилось"
               onClick={handleLikeClick}

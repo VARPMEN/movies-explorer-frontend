@@ -7,6 +7,8 @@ function InputBlock({
   inputValue,
   errorTextLabel,
 }) {
+  const isValid = true;
+
   return (
     <div className="input-block">
       <label className="input-block__label">{labelText}</label>
@@ -17,7 +19,11 @@ function InputBlock({
         value={`${inputValue}`}
         required
       ></input>
-      <label className="input-block__label input-block__label_error">
+      <label
+        className={`input-block__label input-block__label_error ${
+          isValid ? "input-block__label_error_validation" : ""
+        }`}
+      >
         {errorTextLabel}
       </label>
     </div>

@@ -5,7 +5,7 @@ import buttomIcon from "../../images/search-form-button-icon.svg";
 
 function SearchForm() {
   return (
-    <section className="search-form">
+    <section className="search-form" aria-label="Поиск">
       <form className="search-form__form">
         <div className="search-form__input-container">
           <div className="search-form__input-block">
@@ -14,7 +14,11 @@ function SearchForm() {
               src={searchIcon}
               alt="Поиск"
             />
-            <input className="search-form__input" placeholder="Фильм"></input>
+            <input
+              className="search-form__input"
+              placeholder="Фильм"
+              required
+            ></input>
           </div>
           <button className="search-form__button">
             <img src={buttomIcon} alt="Найти" />

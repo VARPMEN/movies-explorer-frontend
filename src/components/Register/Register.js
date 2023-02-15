@@ -5,7 +5,7 @@ import "./Register.css";
 
 function Register() {
   return (
-    <section className="register">
+    <section className="register" aria-label="Регистрация">
       <FormBlock>
         <InputBlock
           labelText={"Имя"}

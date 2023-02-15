@@ -20,26 +20,26 @@ function HeaderLogged() {
         onClick={handleClickBurgerMenu}
       ></button>
       <div
-        className={`header_overlay ${
-          isOpenBurgerMenu && "header_overlay_active"
+        className={`header__overlay ${
+          isOpenBurgerMenu ? "header__overlay_active" : ""
         }`}
       ></div>
       <div
-        className={`header__logged-container ${
-          isOpenBurgerMenu && "header__logged-container_active"
+        className={`header__container-logged ${
+          isOpenBurgerMenu ? "header__container-logged_active" : ""
         }`}
       >
         <button
           className={`header__burger-menu-close-button ${
-            isOpenBurgerMenu && "header__burger-menu-close-button_active"
+            isOpenBurgerMenu ? "header__burger-menu-close-button_active" : ""
           }`}
           onClick={handleClickCloseButton}
         ></button>
-        <div className="header__logged-links">
+        <div className="header__links-logged">
           <Link
             to="/"
-            className={`header__logged-link ${
-              !isOpenBurgerMenu && "header__logged-link_main"
+            className={`header__link-logged ${
+              !isOpenBurgerMenu ? "header__link-logged_main" : ""
             }`}
             onClick={handleClickCloseButton}
           >
@@ -48,7 +48,9 @@ function HeaderLogged() {
           <NavLink
             to="/movies"
             className={({ isActive }) =>
-              `header__logged-link ${isActive && "header__logged-link_active"}`
+              `header__link-logged ${
+                isActive ? "header__link-logged_active" : ""
+              }`
             }
           >
             Фильмы
@@ -56,7 +58,9 @@ function HeaderLogged() {
           <NavLink
             to="/saved-movies"
             className={({ isActive }) =>
-              `header__logged-link ${isActive && "header__logged-link_active"}`
+              `header__link-logged ${
+                isActive ? "header__link-logged_active" : ""
+              }`
             }
           >
             Сохранённые фильмы
@@ -65,8 +69,8 @@ function HeaderLogged() {
         <NavLink
           to="/profile"
           className={({ isActive }) =>
-            `header__logged-profile ${
-              isActive && "header__logged-profile_active"
+            `header__profile-logged ${
+              isActive ? "header__profile-logged_active" : ""
             }`
           }
         >

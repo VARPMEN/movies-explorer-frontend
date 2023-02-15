@@ -4,7 +4,14 @@
   align-items: center;
 
   width: 100%;
-  margin-top: auto;
+}
+
+.button-block_page_signin {
+  margin-top: 221px;
+}
+
+.button-block_page_signup {
+  margin-top: 134px;
 }
 
 .button-block__button {
@@ -44,5 +51,13 @@
 @media (min-width: 320px) and (max-width: 500px) {
   .button-block__text {
     font-size: 12px;
+  }
+
+  .button-block_page_signin {
+    margin-top: 222px;
+  }
+
+  .button-block_page_signup {
+    margin-top: 309px;
   }
 }

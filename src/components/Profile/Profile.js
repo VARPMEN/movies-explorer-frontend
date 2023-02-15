@@ -7,11 +7,15 @@ function Profile() {
       <form className="profile__form">
         <div className="profile__input-container">
           <label className="profile__input-label">Имя</label>
-          <input className="profile__input" value="Антон"></input>
+          <input className="profile__input" value="Антон" required></input>
         </div>
         <div className="profile__input-container">
           <label className="profile__input-label">E-mail</label>
-          <input className="profile__input" value="kuku@mail.ru"></input>
+          <input
+            className="profile__input"
+            value="kuku@mail.ru"
+            required
+          ></input>
         </div>
         <div className="profile__links">
           <p className="profile__link">Редактировать</p>

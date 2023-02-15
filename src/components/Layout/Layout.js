@@ -12,7 +12,9 @@ function Layout() {
   return (
     <div className="layout">
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       {isAccessFooterRoute && <Footer />}
     </div>
   );

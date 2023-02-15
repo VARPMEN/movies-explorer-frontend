@@ -32,6 +32,13 @@
   line-height: 1.21;
 
   border-bottom: 1px solid #424242;
+  outline: unset;
+
+  transition: border-color 0.3s ease-in-out;
+}
+
+.input-block__input:focus {
+  border-color: #4285f4;
 }
 
 .input-block__input_invalid {
@@ -39,7 +46,14 @@
 }
 
 .input-block__label_error {
-  margin-top: 6px;
+  height: 18px;
+  opacity: 0;
+}
 
+.input-block__label_error_validation {
+  margin-top: 6px;
+  height: unset;
+
+  opacity: 1;
   color: #ee3465;
 }

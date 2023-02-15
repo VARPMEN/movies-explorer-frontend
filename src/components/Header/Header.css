@@ -1,4 +1,4 @@
-.header {
+.header_main {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +40,7 @@
   opacity: 0.8;
 }
 
-.header__sign-title {
+.header__title-auth {
   margin: 40px 0 0 0;
 
   font-weight: 500;
@@ -49,7 +49,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 500px) {
-  .header {
+  .header_main {
     padding: 18px 14px;
   }
 
@@ -59,7 +59,7 @@
 }
 
 @media (min-width: 500px) and (max-width: 1000px) {
-  .header {
+  .header_main {
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -86,7 +86,7 @@
 }
 
 @media (min-width: 1281px) {
-  .header,
+  .header_main,
   .header_logged {
     padding-left: calc(70px + (100vw - 1280px) / 2);
     padding-right: calc(70px + (100vw - 1280px) / 2);

@@ -16,7 +16,7 @@
 
   font-weight: 500;
   font-size: 24px;
-  font-weight: 29.05px;
+  line-height: 1.21;
 }
 
 .profile__form {
@@ -48,7 +48,7 @@
 .profile__input-label {
   font-weight: 500;
   font-size: 11px;
-  line-height: 13.31px;
+  line-height: 1.21;
 }
 
 .profile__input {
@@ -60,7 +60,7 @@
   color: #ffffff;
   font-weight: 400;
   font-size: 11px;
-  line-height: 13.31px;
+  line-height: 1.21;
 }
 
 .profile__links {
@@ -76,7 +76,7 @@
 
   font-weight: 400;
   font-size: 13px;
-  line-height: 15.73px;
+  line-height: 1.21;
 }
 
 .profile__link:last-child {

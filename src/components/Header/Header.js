@@ -15,15 +15,15 @@ function Header() {
 
   return (
     <header
-      className={`${isMain && "header"} ${
-        !isMain && !isAuth && "header_logged"
-      } ${isAuth && "header_sign"}`}
+      className={`header ${isMain ? "header_main" : ""} ${
+        !isMain && !isAuth ? "header_logged" : ""
+      } ${isAuth ? "header_sign" : ""}`}
     >
       <Link to="/">
         <img className="header__logo" alt="Логотип" src={logo} />
       </Link>
       {isAuth ? (
-        <h2 className="header__sign-title">
+        <h2 className="header__title-auth">
           {isSignIn ? "Рады видеть!" : "Добро пожаловать!"}
         </h2>
       ) : !isMain ? (

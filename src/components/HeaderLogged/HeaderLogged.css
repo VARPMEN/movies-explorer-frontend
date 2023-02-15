@@ -18,7 +18,7 @@
   opacity: 0.8;
 }
 
-.header_overlay {
+.header__overlay {
   display: none;
 
   position: fixed;
@@ -30,7 +30,7 @@
   background-color: rgba(32, 32, 32, 0.7);
 }
 
-.header__logged-container {
+.header__container-logged {
   display: flex;
   justify-content: space-between;
 
@@ -62,12 +62,12 @@
   opacity: 0.8;
 }
 
-.header__logged-links {
+.header__links-logged {
   display: flex;
   align-items: center;
 }
 
-.header__logged-link {
+.header__link-logged {
   color: #ffffff;
   text-decoration: none;
 
@@ -76,7 +76,7 @@
   line-height: 1.38;
 }
 
-.header__logged-link_active {
+.header__link-logged_active {
   font-weight: 500;
 
   margin-top: 9px;
@@ -84,15 +84,15 @@
   border-bottom: 1px solid #ffffff;
 }
 
-.header__logged-link:last-child {
+.header__link-logged:last-child {
   margin-left: 16px;
 }
 
-.header__logged-link_main {
+.header__link-logged_main {
   display: none;
 }
 
-.header__logged-profile {
+.header__profile-logged {
   display: flex;
   align-items: center;
 
@@ -116,7 +116,7 @@
   border-radius: 50px;
 }
 
-.header__logged-profile_active {
+.header__profile-logged_active {
   padding: 0 0 0 11px;
 
   background-image: url(../../images/header-active-icon-button.svg);
@@ -126,32 +126,32 @@
 }
 
 @media (min-width: 320px) and (max-width: 520px) {
-  .header__logged-container_active {
+  .header__container-logged_active {
     padding: 144px 0 46px 0;
   }
 
-  .header__logged-link_active {
+  .header__link-logged_active {
     padding-bottom: 7px;
     margin-bottom: -9px;
   }
 
-  .header__logged-link:not(:first-child) {
+  .header__link-logged:not(:first-child) {
     margin-top: 24px;
   }
 }
 
 @media (min-width: 520px) and (max-width: 900px) {
-  .header__logged-container_active {
+  .header__container-logged_active {
     padding-top: 159px;
     padding-bottom: 90px;
   }
 
-  .header__logged-link_active {
+  .header__link_active-logged {
     padding-bottom: 4px;
     margin-bottom: -6px;
   }
 
-  .header__logged-link:not(:first-child) {
+  .header__link-logged:not(:first-child) {
     margin-top: 28px;
   }
 }
@@ -161,11 +161,11 @@
     display: block;
   }
 
-  .header__logged-container {
+  .header__container-logged {
     display: none;
   }
 
-  .header_overlay_active {
+  .header__overlay_active {
     display: block;
   }
 
@@ -173,7 +173,7 @@
     display: block;
   }
 
-  .header__logged-container_active {
+  .header__container-logged_active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -195,7 +195,7 @@
     background-color: #202020;
   }
 
-  .header__logged-links {
+  .header__links-logged {
     flex-direction: column;
 
     margin-bottom: auto;
