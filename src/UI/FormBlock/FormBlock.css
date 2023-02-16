@@ -1,0 +1,35 @@
+.form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+
+  height: 100%;
+
+  padding-bottom: 70px;
+
+  background-color: #202020;
+}
+
+.form-block__form {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 396px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+  .form-block {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+  .form-block {
+    padding-bottom: 232px;
+  }
+}
