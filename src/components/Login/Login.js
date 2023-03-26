@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useInputValues } from "../../hooks/useInputValues";
-import { nameReg, emailReg } from "../../utils/constans";
+import { emailReg } from "../../utils/constans";
 import FormBlock from "../../UI/FormBlock/FormBlock";
 import InputBlock from "../../UI/InputBlock/InputBlock";
 import ButtonBlock from "../../UI/ButtonBlock/ButtonBlock";
