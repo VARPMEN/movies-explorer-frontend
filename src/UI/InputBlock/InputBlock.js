@@ -4,24 +4,46 @@ function InputBlock({
   labelText,
   inputName,
   inputType,
-  inputValue,
   errorTextLabel,
+  inputValue,
+  inputValid,
+  inputOnChange,
+  inputPattern,
 }) {
-  const isValid = true;
-
   return (
     <div className="input-block">
       <label className="input-block__label">{labelText}</label>
-      <input
-        name={`${inputName}`}
-        type={`${inputType}`}
-        className="input-block__input"
-        value={`${inputValue}`}
-        required
-      ></input>
+      {inputPattern ? (
+        <input
+          name={`${inputName}`}
+          type={`${inputType}`}
+          className={`input-block__input ${
+            inputValid ? "" : "input-block__input_invalid "
+          }`}
+          value={inputValue ? inputValue : ""}
+          onChange={inputOnChange}
+          pattern={inputPattern}
+          required
+        ></input>
+      ) : (
+        <input
+          name={`${inputName}`}
+          type={`${inputType}`}
+          className={`input-block__input ${
+            inputValid ? "" : "input-block__input_invalid "
+          }`}
+          value={inputValue ? inputValue : ""}
+          onChange={inputOnChange}
+          required
+        ></input>
+      )}
       <label
         className={`input-block__label input-block__label_error ${
-          isValid ? "input-block__label_error_validation" : ""
+          inputValid !== undefined
+            ? inputValid
+              ? ""
+              : "input-block__label_error_validation"
+            : ""
         }`}
       >
         {errorTextLabel}

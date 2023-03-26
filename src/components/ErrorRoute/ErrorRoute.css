@@ -26,9 +26,11 @@
   line-height: 1.21;
 }
 
-.error-route__link {
+.error-route__back-button {
   margin-top: auto;
-  /* margin-bottom: 0; */
+  padding: 0;
+  background: unset;
+  border: unset;
 
   color: #4285f4;
   text-decoration: unset;

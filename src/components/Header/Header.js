@@ -5,7 +5,7 @@ import logo from "../../images/header-logo.svg";
 
 import "./Header.css";
 
-function Header() {
+function Header({ isSuccess }) {
   let location = useLocation();
 
   const isMain = location.pathname === "/";
@@ -15,8 +15,12 @@ function Header() {
 
   return (
     <header
-      className={`header ${isMain ? "header_main" : ""} ${
-        !isMain && !isAuth ? "header_logged" : ""
+      className={`header ${!isSuccess && !isAuth ? "header_main" : ""} ${
+        isSuccess && !isAuth
+          ? isMain
+            ? "header_logged header_logged_main"
+            : "header_logged"
+          : ""
       } ${isAuth ? "header_sign" : ""}`}
     >
       <Link to="/">
@@ -26,7 +30,7 @@ function Header() {
         <h2 className="header__title-auth">
           {isSignIn ? "Рады видеть!" : "Добро пожаловать!"}
         </h2>
-      ) : !isMain ? (
+      ) : isSuccess ? (
         <HeaderLogged />
       ) : (
         <HeaderMain />
