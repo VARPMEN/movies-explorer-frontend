@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useWindowResizeHook } from "../../hooks/useWindowResizeHook";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { moviesRenderCountConfig } from "../../utils/constans";
 import "./MoviesCardList.css";
 
 function MoviesCardList({
@@ -11,7 +12,11 @@ function MoviesCardList({
   isSaveMovies,
 }) {
   const isMobileWidth = useWindowResizeHook();
-  const [renderCount, setRenderCount] = useState(isMobileWidth ? 5 : 7);
+  const [renderCount, setRenderCount] = useState(
+    isMobileWidth
+      ? moviesRenderCountConfig.mobileWidthCount
+      : moviesRenderCountConfig.desktopWidthCount
+  );
   const [isMoreButtonVisible, setIsMoreButtonVisible] = useState(false);
   const [filmCards, setFilmCards] = useState();
 
@@ -67,7 +72,13 @@ function MoviesCardList({
   ]);
 
   function handleMoreButton() {
-    setRenderCount((data) => data + (isMobileWidth ? 1 : 7));
+    setRenderCount(
+      (data) =>
+        data +
+        (isMobileWidth
+          ? moviesRenderCountConfig.moreRenderMobileWidthFilmCount
+          : moviesRenderCountConfig.moreRenderDesktopWidthFilmCount)
+    );
   }
 
   useEffect(() => {

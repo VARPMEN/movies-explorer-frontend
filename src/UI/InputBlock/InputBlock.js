@@ -9,6 +9,7 @@ function InputBlock({
   inputValid,
   inputOnChange,
   inputPattern,
+  inputActive,
 }) {
   return (
     <div className="input-block">
@@ -23,6 +24,7 @@ function InputBlock({
           value={inputValue ? inputValue : ""}
           onChange={inputOnChange}
           pattern={inputPattern}
+          disabled={inputActive}
           required
         ></input>
       ) : (

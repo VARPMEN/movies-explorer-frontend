@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
+import { shortFilmDuration } from "../../utils/constans";
 import "./Movies.css";
 
 function Movies({
@@ -52,14 +53,12 @@ function Movies({
 
   useEffect(() => {
     let array = movies.filter((movie) => {
-      if (inputValue === "") {
-        setIsUnfindFilms(true);
-      } else if (isChecked) {
+      if (isChecked) {
         return movie.nameRU.toLowerCase().includes(inputValue.toLowerCase());
       } else {
         return (
           movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) &&
-          movie.duration > 40
+          movie.duration > shortFilmDuration
         );
       }
     });

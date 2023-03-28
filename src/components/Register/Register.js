@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 import "./Register.css";
 
 function Register({ onSubmitClick }) {
-  const { values, valuesValid, handleChange } = useInputValues({});
+  const { values, valuesValid, handleChange } = useInputValues({}, {});
   const [isActiveButton, setIsActiveButton] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
 
   useEffect(() => {
     function checkValidation() {
@@ -26,7 +27,12 @@ function Register({ onSubmitClick }) {
 
   function handleSubmitButton(e) {
     e.preventDefault();
-    onSubmitClick(values, setIsActiveButton, setErrorMessage);
+    onSubmitClick(
+      values,
+      setIsActiveButton,
+      setErrorMessage,
+      setIsInputDisabled
+    );
   }
 
   return (
@@ -41,6 +47,7 @@ function Register({ onSubmitClick }) {
           inputOnChange={handleChange}
           inputPattern={nameReg}
           errorTextLabel={"Введите корректное имя"}
+          inputActive={isInputDisabled}
         />
         <InputBlock
           labelText={"E-mail"}
@@ -51,6 +58,7 @@ function Register({ onSubmitClick }) {
           inputOnChange={handleChange}
           inputPattern={emailReg}
           errorTextLabel={"Email не соответствует"}
+          inputActive={isInputDisabled}
         />
         <InputBlock
           labelText={"Пароль"}
@@ -60,6 +68,7 @@ function Register({ onSubmitClick }) {
           inputValid={valuesValid.password}
           inputOnChange={handleChange}
           errorTextLabel={"Ошибка пароля"}
+          inputActive={isInputDisabled}
         />
         <ButtonBlock
           buttonText={"Зарегистрироваться"}

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export function useInputValues(inputValues) {
+export function useInputValues(inputValues, inputValid) {
   const [values, setValues] = useState(inputValues);
-  const [valuesValid, setValuesValid] = useState({});
+  const [valuesValid, setValuesValid] = useState(inputValid);
 
   const handleChange = (e) => {
     const { value, name, validity } = e.target;

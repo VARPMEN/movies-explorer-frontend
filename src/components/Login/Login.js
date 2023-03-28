@@ -7,9 +7,10 @@ import ButtonBlock from "../../UI/ButtonBlock/ButtonBlock";
 import "./Login.css";
 
 function Login({ onSubmitClick }) {
-  const { values, valuesValid, handleChange } = useInputValues({});
+  const { values, valuesValid, handleChange } = useInputValues({}, {});
   const [isActiveButton, setIsActiveButton] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
 
   useEffect(() => {
     function checkValidation() {
@@ -26,7 +27,12 @@ function Login({ onSubmitClick }) {
 
   function handleSubmitButton(e) {
     e.preventDefault();
-    onSubmitClick(values, setIsActiveButton, setErrorMessage);
+    onSubmitClick(
+      values,
+      setIsActiveButton,
+      setErrorMessage,
+      setIsInputDisabled
+    );
   }
 
   return (
@@ -41,6 +47,7 @@ function Login({ onSubmitClick }) {
           inputOnChange={handleChange}
           inputPattern={emailReg}
           errorTextLabel={"Email не соответствует"}
+          inputActive={isInputDisabled}
         />
         <InputBlock
           labelText={"Пароль"}
@@ -50,6 +57,7 @@ function Login({ onSubmitClick }) {
           inputValid={valuesValid.password}
           inputOnChange={handleChange}
           errorTextLabel={"Ошибка ввода пароля"}
+          inputActive={isInputDisabled}
         />
         <ButtonBlock
           buttonText={"Войти"}

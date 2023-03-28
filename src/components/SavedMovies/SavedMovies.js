@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { shortFilmDuration } from "../../utils/constans";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import "./SavedMovies.css";
 
-function SavedMovies({ savedMovies, onRemoveClick }) {
+function SavedMovies({ savedMovies, onRemoveClick, isLoading }) {
   const [filteredMoviesList, setFilteredMoviesList] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [isEmptyList, setIsEmptyList] = useState(false);
+  const [isUnfindFilms, setIsUnfindFilms] = useState(false);
 
   function handleFilterButtonClick(inputValue) {
     setInputValue(inputValue);
@@ -17,13 +20,26 @@ function SavedMovies({ savedMovies, onRemoveClick }) {
   }
 
   useEffect(() => {
+    if (filteredMoviesList.length === 0 && inputValue === "") {
+      setIsEmptyList(true);
+      setIsUnfindFilms(false);
+    } else if (filteredMoviesList.length === 0) {
+      setIsUnfindFilms(true);
+      setIsEmptyList(false);
+    } else {
+      setIsEmptyList(false);
+      setIsUnfindFilms(false);
+    }
+  }, [filteredMoviesList, inputValue]);
+
+  useEffect(() => {
     let array = savedMovies.filter((movie) => {
       if (isChecked) {
         return movie.nameRU.toLowerCase().includes(inputValue.toLowerCase());
       } else {
         return (
           movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) &&
-          movie.duration > 40
+          movie.duration > shortFilmDuration
         );
       }
     });
@@ -31,18 +47,34 @@ function SavedMovies({ savedMovies, onRemoveClick }) {
   }, [inputValue, isChecked, savedMovies]);
 
   return (
-    <section className="saved-movies" aria-label="Сохранненые фильмы">
+    <>
       <SearchForm
         onClickFilterButton={handleFilterButtonClick}
         onClickCheckBox={handleCheckboxClick}
         isChecked={isChecked}
       />
-      <MoviesCardList
-        filteredMovies={filteredMoviesList}
-        onRemoveClick={onRemoveClick}
-        isSaveMovies={true}
-      />
-    </section>
+      {isLoading ? (
+        <div className="info">
+          <div className="preloader">
+            <div className="preloader__cover"></div>
+          </div>
+        </div>
+      ) : isEmptyList ? (
+        <div className="info">
+          <p className="info__title">У вас пока нет сохранненых фильмов.</p>
+        </div>
+      ) : isUnfindFilms ? (
+        <div className="info">
+          <p className="info__title">Ничего не нашли, попробуйте снова.</p>
+        </div>
+      ) : (
+        <MoviesCardList
+          filteredMovies={filteredMoviesList}
+          onRemoveClick={onRemoveClick}
+          isSaveMovies={true}
+        />
+      )}
+    </>
   );
 }
 

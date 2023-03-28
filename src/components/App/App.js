@@ -13,11 +13,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import ErrorRoute from "../ErrorRoute/ErrorRoute";
 import moviesApi from "../../utils/MoviesApi";
-import {
-  NOTFOUND_ERROR,
-  SERVER_ERROR,
-  ERROR_MESSAGES,
-} from "../../utils/constans";
+import { notFoundError, serverError, errorMessage } from "../../utils/constans";
 
 function App() {
   const navigate = useNavigate();
@@ -37,7 +33,6 @@ function App() {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/movies");
       setIsLoading(true);
       Promise.all([
         moviesApi.getMovies(),
@@ -56,24 +51,40 @@ function App() {
     }
   }, [isSuccess]);
 
-  function handleLoginUser(data, stateButton, stateMessage) {
+  function handleLoginUser(
+    data,
+    stateButton,
+    stateMessage,
+    stateInputDisabled
+  ) {
+    stateInputDisabled(true);
     api
       .authorize(data)
       .then(() => {
         setIsSuccess(true);
+        navigate("/movies");
         localStorage.setItem("isSuccess", true);
       })
       .catch((err) => {
         stateButton(false);
         if (err.status === 401) {
-          stateMessage(ERROR_MESSAGES.errorInvalidMessage);
+          stateMessage(errorMessage.errorInvalidMessage);
         } else {
           navigateServerErrorPage();
         }
+      })
+      .finally(() => {
+        stateInputDisabled(false);
       });
   }
 
-  function handleRegisterUser(data, stateButton, stateMessage) {
+  function handleRegisterUser(
+    data,
+    stateButton,
+    stateMessage,
+    stateInputDisabled
+  ) {
+    stateInputDisabled(true);
     api
       .register(data)
       .then(() => {
@@ -82,30 +93,43 @@ function App() {
       .catch((err) => {
         stateButton(false);
         if (err.status === 409) {
-          stateMessage(ERROR_MESSAGES.errorEmailErrorMessage);
+          stateMessage(errorMessage.errorEmailErrorMessage);
         } else if (Math.floor(err.status / 100) === 5) {
           navigateServerErrorPage();
         } else {
-          stateMessage(ERROR_MESSAGES.errorRegisterErrorMessage);
+          stateMessage(errorMessage.errorRegisterErrorMessage);
         }
+      })
+      .finally(() => {
+        stateInputDisabled(false);
       });
   }
 
-  function handleChangeUserInfo(data, stateButton, stateMessage) {
+  function handleChangeUserInfo(
+    data,
+    stateButton,
+    stateMessage,
+    stateInputDisabled
+  ) {
+    stateInputDisabled(true);
     api
       .changeUserInfo(data)
       .then((newUserInfo) => {
         setCurrentUser(newUserInfo);
+        stateMessage("");
       })
       .catch((err) => {
         stateButton(false);
         if (err.status === 409) {
-          stateMessage(ERROR_MESSAGES.errorEmailErrorMessage);
+          stateMessage(errorMessage.errorEmailErrorMessage);
         } else if (Math.floor(err.status / 100) === 5) {
           navigateServerErrorPage();
         } else {
-          stateMessage(ERROR_MESSAGES.errorUpdateUserInfoMessage);
+          stateMessage(errorMessage.errorUpdateUserInfoMessage);
         }
+      })
+      .finally(() => {
+        stateInputDisabled(false);
       });
   }
 
@@ -179,6 +203,7 @@ function App() {
                 <SavedMovies
                   savedMovies={savedMovies}
                   onRemoveClick={handleRemoveSavedMovie}
+                  isLoading={isLoading}
                 />
               </ProtectedRoute>
             }
@@ -190,24 +215,33 @@ function App() {
                 <Profile
                   onChangeInfoClick={handleChangeUserInfo}
                   onLogOutClick={handleLogOut}
+                  isLoading={isLoading}
                 />
               </ProtectedRoute>
             }
           />
           <Route
             path="/signup"
-            element={<Register onSubmitClick={handleRegisterUser} />}
+            element={
+              <ProtectedRoute isSuccess={!isSuccess}>
+                <Register onSubmitClick={handleRegisterUser} />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/signin"
-            element={<Login onSubmitClick={handleLoginUser} />}
+            element={
+              <ProtectedRoute isSuccess={!isSuccess}>
+                <Login onSubmitClick={handleLoginUser} />
+              </ProtectedRoute>
+            }
           />
         </Route>
         <Route
           path="/server-error"
-          element={<ErrorRoute errorData={SERVER_ERROR} />}
+          element={<ErrorRoute errorData={serverError} />}
         />
-        <Route path="*" element={<ErrorRoute errorData={NOTFOUND_ERROR} />} />
+        <Route path="*" element={<ErrorRoute errorData={notFoundError} />} />
       </Routes>
     </CurrentUserContext.Provider>
   );
