@@ -1,9 +1,27 @@
+import { useState } from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 import searchIcon from "../../images/search-icon.svg";
 import buttomIcon from "../../images/search-form-button-icon.svg";
 
-function SearchForm() {
+function SearchForm({
+  onClickFilterButton,
+  onClickCheckBox,
+  searchValue,
+  isChecked,
+}) {
+  const [filmFilter, setFilmFilter] = useState(searchValue ? searchValue : "");
+
+  function handleFilmFilter(e) {
+    e.preventDefault();
+    setFilmFilter(e.target.value);
+  }
+
+  function handleFilterButton(e) {
+    e.preventDefault();
+    onClickFilterButton(filmFilter);
+  }
+
   return (
     <section className="search-form" aria-label="Поиск">
       <form className="search-form__form">
@@ -17,16 +35,26 @@ function SearchForm() {
             <input
               className="search-form__input"
               placeholder="Фильм"
+              value={filmFilter}
+              onChange={handleFilmFilter}
               required
             ></input>
           </div>
-          <button className="search-form__button">
+          <button
+            className="search-form__button"
+            type="submit"
+            onClick={handleFilterButton}
+          >
             <img src={buttomIcon} alt="Найти" />
           </button>
         </div>
         <div className="search-form__checkbox-container">
-          <FilterCheckbox />
-          <label className="search-form__checkbox-label" for="switch">
+          <FilterCheckbox onClick={onClickCheckBox} isChecked={isChecked} />
+          <label
+            className="search-form__checkbox-label"
+            htmlFor="switch"
+            onClick={onClickCheckBox}
+          >
             Короткометражки
           </label>
         </div>

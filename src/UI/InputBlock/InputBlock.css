@@ -11,14 +11,19 @@
 }
 
 .input-block__label {
+  margin-top: 6px;
   color: #8b8b8b;
   font-weight: 400;
   font-size: 10px;
   line-height: 1.21;
 }
 
+.input-block__label:first-of-type {
+  margin-top: 0;
+}
+
 .input-block__input {
-  margin-top: 5px;
+  margin-top: 6px;
   padding: 0 0 10px 0;
 
   width: 100%;
@@ -46,14 +51,11 @@
 }
 
 .input-block__label_error {
-  height: 18px;
+  margin-top: 6px;
   opacity: 0;
 }
 
 .input-block__label_error_validation {
-  margin-top: 6px;
-  height: unset;
-
   opacity: 1;
   color: #ee3465;
 }

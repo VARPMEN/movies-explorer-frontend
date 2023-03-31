@@ -1,7 +1,15 @@
 import "./ButtonBlock.css";
 import { Link } from "react-router-dom";
 
-function ButtonBlock({ buttonText, paragraphText, linkText, linkRoute }) {
+function ButtonBlock({
+  buttonText,
+  paragraphText,
+  linkText,
+  linkRoute,
+  buttonOnClick,
+  isButtonActive,
+  errorMessage,
+}) {
   const isSignIn = linkRoute === "/signin";
 
   return (
@@ -10,7 +18,17 @@ function ButtonBlock({ buttonText, paragraphText, linkText, linkRoute }) {
         isSignIn ? "signin" : "signup"
       }`}
     >
-      <button className="button-block__button">{buttonText}</button>
+      {errorMessage !== "" && (
+        <p className="button-block__error-message">{errorMessage}</p>
+      )}
+      <button
+        className="button-block__button"
+        type="submit"
+        onClick={buttonOnClick}
+        disabled={isButtonActive ? "" : true}
+      >
+        {buttonText}
+      </button>
       <p className="button-block__text">
         {paragraphText}
         <Link className="button-block__link" to={`${linkRoute}`}>
