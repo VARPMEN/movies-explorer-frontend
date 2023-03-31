@@ -36,6 +36,7 @@ function InputBlock({
           }`}
           value={inputValue ? inputValue : ""}
           onChange={inputOnChange}
+          disabled={inputActive}
           required
         ></input>
       )}

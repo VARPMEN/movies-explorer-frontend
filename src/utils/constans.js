@@ -13,6 +13,7 @@ export const errorMessage = {
   errorEmailErrorMessage: "Пользователь с таким email уже существует.",
   errorRegisterErrorMessage: "При регистрации пользователя произошла ошибка.",
   errorUpdateUserInfoMessage: "При обновлении профиля произошла ошибка.",
+  successUpdateMessage: "Данные успешно изменены",
 };
 
 export const moviesRenderCountConfig = {

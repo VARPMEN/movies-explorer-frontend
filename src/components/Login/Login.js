@@ -29,9 +29,9 @@ function Login({ onSubmitClick }) {
     e.preventDefault();
     onSubmitClick(
       values,
+      setIsInputDisabled,
       setIsActiveButton,
-      setErrorMessage,
-      setIsInputDisabled
+      setErrorMessage
     );
   }
 

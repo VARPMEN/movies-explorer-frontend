@@ -6,6 +6,7 @@ import "./Profile.css";
 
 function Profile({ onChangeInfoClick, onLogOutClick, isLoading }) {
   const currentUser = useContext(CurrentUserContext);
+
   const { values, valuesValid, handleChange, setValues } = useInputValues(
     {},
     {
@@ -13,8 +14,9 @@ function Profile({ onChangeInfoClick, onLogOutClick, isLoading }) {
       email: true,
     }
   );
-  const [isActiveButton, setIsActiveButton] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isActiveButton, setIsActiveButton] = useState(false);
+  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
 
   useEffect(() => {
@@ -52,7 +54,8 @@ function Profile({ onChangeInfoClick, onLogOutClick, isLoading }) {
       values,
       setIsActiveButton,
       setErrorMessage,
-      setIsInputDisabled
+      setIsInputDisabled,
+      setIsSuccessMessage
     );
   }
 
@@ -98,9 +101,15 @@ function Profile({ onChangeInfoClick, onLogOutClick, isLoading }) {
               ></input>
               <label className="profile__input-label">E-mail</label>
             </div>
-            <div className="profile__buttons">
+            <div className="profile__buttons ">
               {errorMessage !== "" && (
-                <p className="profile__error-message">{errorMessage}</p>
+                <p
+                  className={`profile__error-message ${
+                    isSuccessMessage ? "profile__error-message_success" : ""
+                  }`}
+                >
+                  {errorMessage}
+                </p>
               )}
               <button
                 onClick={handleClickChangeInfoButton}

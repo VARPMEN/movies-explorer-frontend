@@ -53,9 +53,9 @@ function App() {
 
   function handleLoginUser(
     data,
+    stateInputDisabled,
     stateButton,
-    stateMessage,
-    stateInputDisabled
+    stateMessage
   ) {
     stateInputDisabled(true);
     api
@@ -88,7 +88,7 @@ function App() {
     api
       .register(data)
       .then(() => {
-        handleLoginUser(data);
+        handleLoginUser(data, stateInputDisabled);
       })
       .catch((err) => {
         stateButton(false);
@@ -109,14 +109,16 @@ function App() {
     data,
     stateButton,
     stateMessage,
-    stateInputDisabled
+    stateInputDisabled,
+    stateIsSuccess
   ) {
     stateInputDisabled(true);
     api
       .changeUserInfo(data)
       .then((newUserInfo) => {
+        stateMessage(errorMessage.successUpdateMessage);
+        stateIsSuccess(true);
         setCurrentUser(newUserInfo);
-        stateMessage("");
       })
       .catch((err) => {
         stateButton(false);

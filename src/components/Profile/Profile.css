@@ -91,6 +91,10 @@
   line-height: 1.21;
 }
 
+.profile__error-message_success {
+  color: #adff2f;
+}
+
 .profile__button {
   padding: 0;
 
